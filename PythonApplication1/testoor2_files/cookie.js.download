@@ -1,0 +1,44 @@
+(function(){
+  GeolizrAPI.addEventListener('geolizr.geoData', function(geoData){
+    if (geoData.hasOwnProperty('continent') && geoData.continent == 'Europe') {
+      const visitedEU = getCookie('seedVisitedEU');
+      if (visitedEU == '') {
+        console.log('has not visited EU site')
+        window.location.href = 'https://eu.kith.com'
+      }else{
+        console.log('visited EU')
+      }
+    }
+
+    if (geoData.hasOwnProperty('countryCode') && geoData.countryCode == 'US') {
+      const globalECookie = JSON.parse(getCookie('GlobalE_Data'))
+      if (globalECookie.currencyCode != 'USD') {
+        document.cookie = 'GlobalE_Data=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;domain=kith.com;'
+      }
+    }
+
+    if (geoData.hasOwnProperty('continent') && geoData.continent == 'Europe') {
+      const visitedEU = getCookie('seedVisitedEU');
+      if (visitedEU == '') {
+        console.log('has not visited EU site')
+        window.location.href = 'https://eu.kith.com'
+      }
+    }
+  });
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+})();
