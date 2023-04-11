@@ -1,4 +1,3 @@
-# Rough Shopify Variant grabber 
- It displays variants as well as atc links given a shopify link.
- Was used to learn about webscraping
+# Shopify Variant grabber 
+ Pulls variants from a shopify website 
  Requires BS4 and Requests
